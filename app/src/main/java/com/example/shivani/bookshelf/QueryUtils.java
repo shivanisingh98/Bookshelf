@@ -30,8 +30,8 @@ public class QueryUtils {
         } catch (IOException e) {
             Log.e("fetchBookData", "Problem making the HTTP request.", e);
         }
-        ArrayList<Book> answer = extractFeatures(jsonResponse);
-        return answer;
+        return (extractFeatures(jsonResponse));
+
     }
 
     private static String makeHttpRequest(URL url) throws IOException {
@@ -80,28 +80,32 @@ public class QueryUtils {
         }
         return str.toString();
     }
-    private static ArrayList<Book> extractFeatures(String output)
-    {
-        if(TextUtils.isEmpty(output))
-        {
+
+    private static ArrayList<Book> extractFeatures(String output) {
+        if (TextUtils.isEmpty(output)) {
             return null;
         }
-        ArrayList<Book> answer=new ArrayList<>();
-        try
-        {
-            JSONObject base=new JSONObject(output);
-            JSONArray list=new JSONArray("items");
-            for(int i=0;i<list.length();i++)
-            {
-           JSONObject current=list.getJSONObject(i);
-                answer.add(new Book(current.getString("title"),current.getString("subtitle")));
+        ArrayList<Book> answer1 = new ArrayList<>();
+
+        try {
+            JSONObject base = new JSONObject(output);
+            JSONArray list1 = base.getJSONArray("items");
+            for (int i = 0; i < list1.length(); i++) {
+                JSONObject current = list1.getJSONObject(i);
+                JSONObject info = current.getJSONObject("volumeInfo");
+                JSONArray authorInfo = info.getJSONArray("authors");
+                 String authorArray[] = new String[authorInfo.length()];
+                for (int j = 0; j < authorInfo.length(); j++) {
+                    authorArray[j] = authorInfo.getString(j);
+                }
+                answer1.add(new Book(info.getString("title"), authorArray));
+
+
             }
+        } catch (JSONException e) {
+            Log.e("extractFeatures", "Problem in parsing JSON", e);
         }
-        catch(JSONException e)
-        {
-            Log.e("extractFeatures","Problem in parsing JSON",e);
-        }
-        return answer;
+        return answer1;
     }
 }
 

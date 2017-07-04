@@ -1,6 +1,7 @@
 package com.example.shivani.bookshelf;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +31,27 @@ public class BookAdapter extends ArrayAdapter<Book>{
         }
         Book currentBook=getItem(position);
         TextView mtitle=(TextView) listItemView.findViewById(R.id.title);
-        mtitle.setText(currentBook.getTitle());
+        String t=currentBook.getTitle();
+        mtitle.setText(t);
         TextView msubtitle=(TextView) listItemView.findViewById(R.id.subtitle);
-        msubtitle.setText(currentBook.getSubtitle());
+        String authors[]=currentBook.getSubtitle();
+        String authorsToDisplay="";
+        for(int i=0;i<authors.length;i++)
+        {
+            if(i==0)
+            {
+                authorsToDisplay+=authors[i];
+            }
+            else
+            {
+                authorsToDisplay+=" ,"+authors[i];
+            }
+        }
+        Log.v("authors",authorsToDisplay);
+        msubtitle.setText(authorsToDisplay);
+        TextView thumbnail=(TextView) listItemView.findViewById(R.id.circle);
+        thumbnail.setText(Character.toUpperCase(t.charAt(0))+"");
+        msubtitle.setText(authorsToDisplay);
                 return listItemView;
     }
 }

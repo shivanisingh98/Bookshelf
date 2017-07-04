@@ -5,18 +5,19 @@ package com.example.shivani.bookshelf;
  */
 
 public class Book {
-    private String title,subtitle;
-    public Book(String t, String s)
+    private String title;
+    private String authorOfBook[];
+    public Book(String t, String s[])
     {
         title=t;
-        subtitle=s;
+        authorOfBook=s;
     }
     public String getTitle()
     {
         return title;
     }
-    public String getSubtitle()
+    public String[] getSubtitle()
     {
-        return subtitle;
+        return authorOfBook;
     }
 }

@@ -1,26 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
-<TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/title"
-    tools:text="Book1"
-    android:textStyle="bold"
-    android:textSize="16sp"
-    android:paddingRight="6dp"
-    android:paddingLeft="6dp"
-    android:paddingBottom="6dp"
-    />
+    android:orientation="horizontal"
+    >
+
     <TextView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/circle"
+        android:background="@drawable/shapes"
+        android:textSize="32dp"
+        android:layout_margin="8dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:paddingTop="2dp"
+
+        tools:text="A"
+        android:textAlignment="center"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="SubTitle"
-        android:paddingRight="6dp"
-        android:paddingLeft="6dp"
-        android:id="@+id/subtitle"/>
+        android:padding="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="6dp"
+            android:paddingLeft="6dp"
+            android:textColor="@android:color/white"
+            android:paddingRight="6dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Book1" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            tools:text="SubTitle" />
+    </LinearLayout>
+
 </LinearLayout>
